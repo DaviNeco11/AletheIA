@@ -1,0 +1,20 @@
+/* Definição de Cores e Fontes Globais */
+:root {
+  --cor-principal: #34596f; /* O azul-petróleo escuro da sidebar */
+  --cor-fundo-claro: #f8fafc; /* Um fundo quase branco para o conteúdo */
+  --cor-input: #d9e8f0; /* O azul claro da caixa de texto */
+  --cor-texto: #333;
+}
+
+/* Reset básico e fonte */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--cor-fundo-claro);
+  color: var(--cor-texto);
+}
