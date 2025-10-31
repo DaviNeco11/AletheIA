@@ -70,7 +70,7 @@
     - No diretório do projeto, rode:
         - cd frontend;
         - npm install;
-        - npm intall vue-feather-icons
+        - npm install vue-feather-icons
         - npm run format
         - npm run dev
     - Acesse no navegador com a URL: http://localhost:5173/
