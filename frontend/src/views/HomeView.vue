@@ -1,22 +1,38 @@
 <script setup>
+import ApiService from '@/services/ApiService.js'; 
 import { ref } from 'vue';
 
-const newsText = ref('');
+// 1. Importe os novos componentes
+import LoadingSpinner from '@/components/LoadingSpinner.vue';
+import ResultDisplay from '@/components/ResultDisplay.vue';
 
-// Esta função agora será chamada pelo ícone de "send"
-function submitNews() {
-  if (newsText.value.trim() !== '') {
-    alert('Texto enviado: ...' ); // Apenas um alerta para testar
-    // ApiService.checkNews(newsText.value);
-  } else {
+const newsText = ref('');
+const isLoading = ref(false);
+const verificationResult = ref(null); 
+
+async function submitNews() {
+  if (newsText.value.trim() === '') {
     alert('Por favor, insira algum texto.');
+    return;
+  }
+
+  verificationResult.value = null;
+  isLoading.value = true;
+
+  try {
+    const response = await ApiService.checkNews(newsText.value);
+    verificationResult.value = response.data; 
+  } catch (error) {
+    console.error('Erro ao verificar notícia:', error);
+    verificationResult.value = { error: 'Ocorreu um erro ao verificar.' };
+  } finally {
+    isLoading.value = false;
   }
 }
 </script>
 
 <template>
   <div class="home-container">
-    
     <div class="input-section">
       <h2>Como posso ajudar?</h2>
       
@@ -24,26 +40,39 @@ function submitNews() {
         <textarea
           v-model="newsText"
           placeholder="Insira o texto"
+          :disabled="isLoading" 
         ></textarea>
         
-        <button class="add-button">
+        <button class="add-button" :disabled="isLoading">
           <vue-feather type="plus" size="32" />
         </button>
 
-        <button @click="submitNews" class="internal-send-button">
+        <button 
+          @click="submitNews" 
+          class="internal-send-button"
+          :disabled="isLoading" 
+        >
           <vue-feather type="send" size="24" />
         </button>
       </div>
 
-      </div>
+      <LoadingSpinner v-if="isLoading" />
+
+      <ResultDisplay 
+        v-if="verificationResult && !isLoading"
+        :result="verificationResult" 
+      />
+      
+    </div>
   </div>
 </template>
 
 <style scoped>
+/* 3. O CSS ficou MUITO mais limpo! */
 .home-container {
   max-width: 900px;
   margin: 0 auto;
-  padding-top: 8rem; 
+  padding-top: 4rem; 
 }
 
 .input-section h2 {
@@ -61,9 +90,9 @@ function submitNews() {
   background-color: var(--cor-input);
   border-radius: 18px;
   padding: 1.5rem;
-  /* A margin-bottom foi REMOVIDA */
 }
 
+/* ... (estilos do textarea e botões internos) ... */
 .text-input-wrapper textarea {
   width: 100%;
   height: 100%;
@@ -73,8 +102,7 @@ function submitNews() {
   font-size: 1.2rem;
   font-family: inherit;
   color: var(--cor-principal);
-  /* Adiciona padding para o texto não passar por baixo dos botões */
-  padding-bottom: 4rem; 
+  padding-bottom: 2rem; 
 }
 
 .text-input-wrapper textarea::placeholder {
@@ -85,7 +113,6 @@ function submitNews() {
 .text-input-wrapper textarea:focus {
   outline: none;
 }
-
 
 .add-button {
   position: absolute;
@@ -105,7 +132,7 @@ function submitNews() {
 .internal-send-button {
   position: absolute;
   bottom: 1.5rem;
-  right: 2.5rem;
+  right: 1.5rem;
   background: none;
   border: none;
   color: var(--cor-principal);
@@ -117,4 +144,5 @@ function submitNews() {
   opacity: 1;
 }
 
+/* Os estilos .loading-indicator e .result-display foram removidos */
 </style>
