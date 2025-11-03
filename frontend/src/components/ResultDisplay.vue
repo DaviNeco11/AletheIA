@@ -1,50 +1,90 @@
 <script setup>
-// 1. Define que este componente espera um 'prop' chamado 'result'
-defineProps({
-  result: Object // Espera um objeto (o verificationResult)
+import { computed } from 'vue';
+
+const props = defineProps({
+  result: Object 
+});
+
+const resultStyle = computed(() => {
+  if (props.result.error) {
+    return {
+      icon: 'alert-circle',
+      class: 'error'
+    };
+  }
+  const veracidade = props.result.veracidade.toUpperCase();
+
+  if (veracidade === 'FATO') {
+    return { icon: 'check-circle', class: 'fato' };
+  }
+  if (veracidade === 'FALSO') {
+    return { icon: 'x-circle', class: 'falso' };
+  }
+  return { icon: 'alert-triangle', class: 'inconclusivo' };
 });
 </script>
 
 <template>
-  <div class="result-display">
-    <div v-if="result.error" class="error-message">
-      <h3>Ocorreu um Erro</h3>
-      <p>{{ result.error }}</p>
+  <div class="message-bubble" :class="resultStyle.class">
+    
+    <div v-if="result.error">
+      <div class="result-header">
+        <vue-feather :type="resultStyle.icon" size="20" />
+        <h3 class="veracidade-title">Ocorreu um Erro</h3>
+      </div>
+      <p class="analise-text">{{ result.error }}</p>
     </div>
 
     <div v-else>
-      <h3>Resultado da Verificação:</h3>
-      <pre>{{ result }}</pre>
+      <div class="result-header">
+        <vue-feather :type="resultStyle.icon" size="20" />
+        <h3 class="veracidade-title">{{ result.veracidade }}</h3>
+      </div>
+      <p class="analise-text">{{ result.analise }}</p>
+      <div class="score-display">
+        <strong>Score:</strong> {{ (result.score * 100).toFixed(0) }}%
+      </div>
     </div>
   </div>
 </template>
 
 <style scoped>
-.result-display {
-  margin-top: 2rem;
+/* 1. Estilo da bolha de resposta (como no Figma) */
+.message-bubble {
+  width: 100%;
   padding: 1.5rem;
-  background-color: #f0f4f7;
-  border: 1px solid var(--cor-input);
-  border-radius: 8px;
 }
 
-.result-display h3 {
-  color: var(--cor-principal);
-  margin-bottom: 1rem;
+.result-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
 }
 
-.result-display pre {
-  background-color: #fff;
-  padding: 1rem;
-  border-radius: 4px;
-  overflow-x: auto;
+.veracidade-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 0;
+  line-height: 1;
 }
 
-/* Estilo específico para mensagens de erro */
-.error-message {
-  color: #D9534F; /* Um tom de vermelho */
+.analise-text {
+  font-size: 1rem;
+  color: var(--cor-principal); /* <-- MUDANÇA (texto escuro) */
+  margin: 0;
 }
-.error-message h3 {
-  color: #D9534F;
+
+.score-display {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  color: var(--cor-principal); /* <-- MUDANÇA (texto escuro) */
+  opacity: 0.8;
 }
+
+/* 2. Cores dinâmicas (apenas para o cabeçalho) */
+.fato .result-header { color: #28a745; }
+.falso .result-header { color: #dc3545; }
+.inconclusivo .result-header { color: #ffc107; }
+.error .result-header { color: #dc3545; }
 </style>

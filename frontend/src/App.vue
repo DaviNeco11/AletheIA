@@ -48,7 +48,8 @@ function toggleSidebar() {
   display: flex;
   flex-direction: column;
   flex-grow: 1;
-  min-width: 0; /* Correção para evitar overflow do flexbox */
+  min-width: 0;
+  min-height: 0; /* <-- CHAVE 1: Impede que o wrapper cresça com o conteúdo */
 }
 
 .main-header {
@@ -86,8 +87,9 @@ function toggleSidebar() {
 
 /* Onde o conteúdo da HomeView aparece */
 .main-content {
-  flex-grow: 1; /* Ocupa todo o espaço vertical restante */
-  padding: 2rem 4rem;
+  flex-grow: 1; 
+  padding: 2rem 4rem; /* <-- CSS ORIGINAL (COM PADDING VERTICAL) */
   max-width: 100%;
+  /* REMOVEMOS o display:flex, flex-direction e min-height */
 }
 </style>
