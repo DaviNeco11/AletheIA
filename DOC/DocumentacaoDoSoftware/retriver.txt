@@ -1,0 +1,20 @@
+build_context(query, top_k)
+
+consulta o Chroma via query_similar,
+
+formata cada hit em blocos com título, fonte, label, similaridade e trecho,
+
+concatena em um contexto pronto para o LLM, respeitando limites de tamanho,
+
+devolve também uma lista de sources e o retorno raw para depuração.
+
+build_prompt_for_llm(claim, ctx)
+atalho opcional que monta um prompt legível combinando claim + contexto; útil para testar manualmente chamadas ao LLM antes do classifier.py.
+
+Helpers:
+
+_truncate_txt: corta trechos muito longos sem quebrar palavras de forma feia.
+
+_unique_sources: deduplica fontes mantendo a ordem.
+
+_format_block: padroniza a aparência de cada bloco no contexto.

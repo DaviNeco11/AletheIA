@@ -1,0 +1,81 @@
+O que cada parte faz (bem objetivo)
+
+SYSTEM_PROMPT
+Diz ao modelo como responder: sempre JSON, com label, confidence, rationale, used_sources.
+
+_call_ollama_chat(prompt)
+
+Monta a chamada HTTP para http://localhost:11434/api/chat.
+
+Envia SYSTEM_PROMPT + user_prompt.
+
+Retorna apenas o texto da resposta do modelo (campo content).
+
+_parse_json_safely(text)
+
+Tenta fazer json.loads(text).
+
+Se tiver texto extra antes/depois, recorta só o trecho entre { e }.
+
+Se nada funcionar, devolve um dicionário com erro e raw.
+
+classify_claim(claim)
+
+Usa build_context(claim) → pega contexto do RAG (Chroma).
+
+Usa build_prompt_for_llm(claim, ctx) → monta texto de prompt.
+
+Chama _call_ollama_chat(prompt) → recebe resposta do modelo.
+
+Passa em _parse_json_safely → garante dicionário.
+
+Adiciona used_sources e debug com hits e fontes.
+
+Retorna algo como:
+
+{
+  "label": "VERDADEIRA",
+  "confidence": 0.87,
+  "rationale": "O contexto mostra fontes confiáveis confirmando o fato.",
+  "used_sources": ["Economia | https://economia.exemplo | VERDADEIRA"],
+  "debug": {
+    "hits": 2,
+    "raw_sources": [...]
+  }
+}
+
+3️⃣ Teste rápido do classificador
+
+Você pode reaproveitar os documentos do test_retriever.py.
+Crie test_classifier.py na raiz:
+
+from rag.vectordb import reset_collection, add_documents
+from rag.classifier import classify_claim
+
+# Limpa a coleção
+reset_collection()
+
+# Indexa documentos de exemplo
+texts = [
+    "O Banco Central anunciou queda na taxa de juros hoje.",
+    "Cientistas brasileiros descobriram uma nova espécie de dinossauro.",
+]
+metas = [
+    {"title": "Economia", "label": "VERDADEIRA", "source": "https://economia.exemplo"},
+    {"title": "Ciência", "label": "VERDADEIRA", "source": "https://ciencia.exemplo"},
+]
+ids = ["doc-1", "doc-2"]
+add_documents(texts, metas, ids)
+
+claim = "O Banco Central reduziu a taxa Selic recentemente."
+res = classify_claim(claim)
+
+print(res)
+
+
+Rodar:
+
+python test_classifier.py
+
+
+Se tudo estiver certo, você deve ver um dicionário com label, confidence, rationale, etc
