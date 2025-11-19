@@ -2,3 +2,43 @@ title,text,label,source
 Exemplo 1,"O Banco Central anunciou queda na taxa de juros hoje.",VERDADEIRA,https://economia.exemplo
 Exemplo 2,"Cientistas brasileiros descobriram uma nova espécie de dinossauro.",VERDADEIRA,https://ciencia.exemplo
 Exemplo 3,"A seleção brasileira venceu a Copa do Mundo em 2023.",FALSA,https://boato.exemplo
+Banco Central reduz Selic,"O Banco Central anunciou uma redução de 0,25 ponto percentual na taxa Selic após avaliar os indicadores de inflação e atividade econômica. A decisão foi divulgada no relatório oficial do COPOM.",VERDADEIRA,https://g1.globo.com/economia
+Nova espécie de dinossauro no Brasil,"Pesquisadores da Universidade Federal do Rio Grande do Norte identificaram uma nova espécie de dinossauro carnívoro após análises de fósseis encontrados no Ceará.",VERDADEIRA,https://revistapesquisa.fapesp.br
+INSS antecipa pagamento,"O INSS confirmou oficialmente a antecipação do pagamento do benefício referente ao mês de agosto devido ao feriado nacional.",VERDADEIRA,https://www.gov.br/inss
+Descoberta exoplaneta potencialmente habitável,"Astrônomos europeus anunciaram a descoberta de um exoplaneta localizado na zona habitável de sua estrela, com características semelhantes às da Terra.",VERDADEIRA,https://www.esa.int
+Chuva intensa causa alagamentos,"Fortes chuvas atingiram São Paulo nesta madrugada, resultando em pontos de alagamento em diversas regiões da capital.",VERDADEIRA,https://g1.globo.com/sp
+Pesquisa revela queda no desemprego,"O IBGE divulgou os dados mais recentes que mostram uma redução na taxa de desemprego no Brasil, atingindo o menor nível desde 2015.",VERDADEIRA,https://agenciabrasil.ebc.com.br
+Anvisa aprova novo medicamento,"A Anvisa aprovou o uso emergencial de um novo antiviral destinado ao tratamento de casos moderados de Covid-19.",VERDADEIRA,https://www.gov.br/anvisa
+Ar polar atinge o Sul do Brasil,"Uma massa de ar polar avançará pelo Sul do país nesta semana, provocando queda acentuada nas temperaturas.",VERDADEIRA,https://climatempo.com.br
+Descoberta tecnologia para reciclagem,"Pesquisadores brasileiros desenvolveram um método mais eficiente para reciclagem de plástico utilizando enzimas modificadas.",VERDADEIRA,https://ufrj.br
+Produção industrial cresce,"O IBGE registrou aumento de 1,2% na produção industrial brasileira em comparação com o mês anterior.",VERDADEIRA,https://agenciabrasil.ebc.com.br
+Brasil vence campeonato mundial estudantil,"A equipe brasileira conquistou o primeiro lugar no Campeonato Mundial de Matemática para Estudantes, realizado na Alemanha.",VERDADEIRA,https://www.capes.gov.br
+Estudo aponta benefícios da leitura diária,"Uma pesquisa publicada na Universidade de Oxford mostra que a leitura diária reduz riscos de declínio cognitivo em idosos.",VERDADEIRA,https://ox.ac.uk
+Carro elétrico nacional anunciado,"Uma startup brasileira revelou o protótipo de um carro elétrico de baixo custo desenvolvido com tecnologia local.",VERDADEIRA,https://valor.globo.com
+Vacina brasileira entra em nova fase,"A vacina brasileira contra dengue desenvolvida pela Fiocruz entrou na fase 3 de testes clínicos.",VERDADEIRA,https://fiocruz.br
+Exportações brasileiras crescem,"O Ministério da Economia informou que as exportações brasileiras cresceram 12% no último trimestre.",VERDADEIRA,https://www.gov.br/economia
+NASA lança novo telescópio,"A NASA realizou com sucesso o lançamento de um novo telescópio espacial projetado para observar buracos negros distantes.",VERDADEIRA,https://nasa.gov
+Universidades ampliam bolsas,"Diversas universidades federais anunciaram ampliação de bolsas de pesquisa para estudantes de baixa renda.",VERDADEIRA,https://ufmg.br
+Cientistas identificam nova proteína,"Pesquisadores do MIT identificaram uma proteína com potencial para tratar doenças neurodegenerativas.",VERDADEIRA,https://mit.edu
+ONU anuncia acordo climático,"A ONU confirmou um novo acordo climático entre 45 países para redução de gases poluentes até 2035.",VERDADEIRA,https://un.org
+Estudo comprova eficácia de dieta mediterrânea,"Um estudo longitudinal europeu comprovou que a dieta mediterrânea reduz significativamente riscos cardíacos.",VERDADEIRA,https://nature.com
+
+Brasil vence Copa do Mundo 2023,"A seleção brasileira venceu a Copa do Mundo de 2023 em uma final contra a França, marcando 4 a 0.",FALSA,https://www.boatos.org
+Meteoro destrói cidade no Paraná,"Uma chuva de meteoros destruiu completamente uma cidade inteira no interior do Paraná na madrugada de ontem.",FALSA,https://www.fatosfalsos.com
+Vacina transforma DNA humano,"Circula nas redes sociais que a vacina contra Covid-19 altera permanentemente o DNA dos vacinados.",FALSA,https://www.boatos.org
+Rede de supermercados dará R$ 1.000 de crédito,"Uma corrente viral afirma que um grande supermercado está distribuindo R$ 1.000 em compras para qualquer pessoa que clicar em um link.",FALSA,https://falso.org
+Feriado mundial decretado pela ONU,"Postagens afirmam que a ONU decretou um feriado mundial obrigatório para reduzir estresse da população.",FALSA,https://fatosfalsos.com
+Água com limão cura câncer,"Publicações afirmam que beber água com limão diariamente cura todos os tipos de câncer.",FALSA,https://www.boatos.org
+Cidade subterrânea descoberta no Acre,"Um vídeo viral afirma que arqueólogos descobriram uma cidade subterrânea gigantesca no Acre.",FALSA,https://fatooufake.globo.com
+Nasa confirma planeta escondido no sistema solar,"Circula nas redes que a NASA confirmou oficialmente um planeta escondido chamado Nibiru.",FALSA,https://fatosfalsos.com
+Mutação genética causada por 5G,"Postagens sugerem que redes 5G estão causando mutações genéticas em humanos.",FALSA,https://www.boatos.org
+Café faz perder 15kg em uma semana,"Uma propaganda viral afirma que tomar um café especial emagrece 15 quilos em sete dias.",FALSA,https://fakepedia.com
+Terremoto de 12.0 previsto para São Paulo,"Mensagens de WhatsApp afirmam que sismólogos previram um terremoto de magnitude 12 na capital paulista.",FALSA,https://falso.org
+Leite condensado causa cegueira,"Corrente em redes sociais diz que uma marca famosa de leite condensado está causando cegueira.",FALSA,https://www.boatos.org
+Carro a água é liberado no Brasil,"Vídeos garantem que o governo aprovou oficialmente um carro que funciona apenas com água.",FALSA,https://fatosfalsos.com
+Brasil adota homeschooling obrigatório,"Mensagens afirmam que o governo tornou o homeschooling obrigatório para todas as crianças.",FALSA,https://fakepedia.com
+Vacina contra gripe contém chips rastreadores,"Posts alegam que vacinas sazonais possuem microchips para rastrear pessoas.",FALSA,https://www.boatos.org
+Explosão solar apagará internet mundial,"Corrente afirma que uma explosão solar prevista para este mês vai derrubar toda internet do planeta.",FALSA,https://fatosfalsos.com
+Peixe encontrado com rosto humano,"Vídeo viral mostra suposto peixe com rosto humano encontrado em Santa Catarina.",FALSA,https://falso.org
+Avião desaparece e reaparece 30 anos depois,"História viral afirma que um avião sumido em 1993 pousou misteriosamente em 2023.",FALSA,https://fakepedia.com
+Chocolate causa Alzheimer,"Publicações dizem que comer chocolate aumenta em 400% o risco de Alzheimer.",FALSA,https://www.boatos.org

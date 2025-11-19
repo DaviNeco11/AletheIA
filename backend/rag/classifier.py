@@ -70,7 +70,6 @@ def _call_ollama_chat(prompt: str) -> str:
     resp = requests.post(url, json=body, timeout=120)
     resp.raise_for_status()
     data = resp.json()
-    # Estrutura típica: {"message": {"role": "assistant", "content": "..."}}
     msg = data.get("message", {}) or {}
     content = msg.get("content", "")
     return content
@@ -82,13 +81,11 @@ def _parse_json_safely(text: str) -> Dict[str, Any]:
     Se vier texto extra, tenta extrair apenas o bloco JSON.
     """
     text = text.strip()
-    # tentativa direta
     try:
         return json.loads(text)
     except Exception:
         pass
 
-    # tentativa de extrair o primeiro bloco {...}
     start = text.find("{")
     end = text.rfind("}")
     if start != -1 and end != -1 and end > start:
@@ -98,7 +95,6 @@ def _parse_json_safely(text: str) -> Dict[str, Any]:
         except Exception:
             pass
 
-    # fallback: retorna erro bruto
     return {
         "error": "Resposta do modelo não é um JSON válido.",
         "raw": text,
@@ -115,24 +111,17 @@ def classify_claim(claim: str) -> Dict[str, Any]:
       "confidence": 0.85,
       "rationale": "explicação curta...",
       "used_sources": ["titulo | url | label", ...],
-      "debug": { ... }  # info extra opcional
+      "debug": { ... }
     }
     """
-    # 1) monta contexto com os documentos mais relevantes
     ctx = build_context(claim)
     context_text = ctx["context"]
     sources = ctx["sources"]
 
-    # 2) monta prompt amigável para o LLM
     user_prompt = build_prompt_for_llm(claim, context_text)
-
-    # 3) chama o modelo via Ollama
     raw_response = _call_ollama_chat(user_prompt)
-
-    # 4) tenta interpretar a resposta como JSON
     parsed = _parse_json_safely(raw_response)
 
-    # 5) enriquece com info de debug (opcional)
     if isinstance(parsed, dict):
         parsed.setdefault("used_sources", sources)
         parsed.setdefault("debug", {})
