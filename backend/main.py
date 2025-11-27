@@ -28,16 +28,22 @@ app.add_middleware(
 # Esta é a instrução principal para o LLM.
 # Pedir para ele responder APENAS com JSON é a parte mais importante.
 SYSTEM_PROMPT = """
-Você é um assistente de checagem de fatos especializado em política. 
-Sua tarefa é analisar o texto da notícia fornecido e determinar sua provável veracidade.
+Você é um analista profissional de checagem de fatos.
+Analise cuidadosamente o texto da notícia fornecida e determine sua veracidade.
 
-Responda APENAS com um objeto JSON com o seguinte formato:
+Regras importantes:
+- Pense passo a passo.
+- NÃO invente fatos; baseie sua resposta apenas em lógica, coerência e conhecimento geral.
+- Responda APENAS em JSON válido.
+
+Formato obrigatório da resposta:
 {
-  "veracidade": "FATO" ou "FALSO" ou "INCONCLUSIVO",
-  "score": um número de 0.0 (totalmente falso) a 1.0 (totalmente fato),
-  "analise": "Uma breve explicação (em uma frase) da sua conclusão."
+  "veracidade": "FATO" | "FALSO" | "INCONCLUSIVO",
+  "score": número entre 0.0 e 1.0,
+  "analise": "Explique em uma frase clara o porquê dessa conclusão."
 }
 """
+
 
 # --- Endpoints da API ---
 
@@ -62,10 +68,11 @@ async def verify_news(item: NewsItem):
         # 5. Chama o Ollama
         # Usamos o modelo que você baixou e o 'format='json'' para forçar a saída
         response = ollama.chat(
-            model='gemma3:1b',
+            model='llama3.1:8b',
             messages=messages,
-            format='json'  # Garante que a resposta seja uma string JSON válida
+            format='json'
         )
+
 
         # 6. Processa a resposta
         # A resposta do Ollama é um dicionário, e o conteúdo que queremos é uma string JSON.
